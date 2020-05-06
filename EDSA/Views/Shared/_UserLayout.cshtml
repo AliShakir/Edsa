@@ -1,0 +1,171 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+    @Styles.Render("~/admin/bundles/css")
+</head>
+
+<body class="o-page">
+    <!--System Admin User-->
+    @if (Session["userType"].ToString() == "System Admin")
+    {
+        <div class="o-page__sidebar js-page-sidebar">
+            <div class="c-sidebar">
+                <a class="c-sidebar__brand" href="/Dashboard/Index">
+                    <img class="c-sidebar__brand-img" src="~/Content/admin/img/logo.png" alt="Logo"> Dashboard
+                </a>
+                <h4 class="c-sidebar__title">Dashboards</h4>
+                <ul class="c-sidebar__list">
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Dashboard/Index">
+                            <i class="fa fa-dashboard u-mr-xsmall"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="c-sidebar__item has-submenu">
+                        <a class="c-sidebar__link" data-toggle="collapse" href="#sidebar-submenu" aria-expanded="false" aria-controls="sidebar-submenu">
+                            <i class="fa fa-user u-mr-xsmall"></i>Manage Users
+                        </a>
+                        <ul class="c-sidebar__submenu collapse" id="sidebar-submenu">
+                            <li><a class="c-sidebar__link" href="/User/AddInternalUser">Add User</a></li>
+                            <li><a class="c-sidebar__link" href="/User/UserList">User List</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Dashboard/NewApplications">
+                            <i class="fa fa-paper-plane u-mr-xsmall"></i>New Applications
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- // .c-sidebar -->
+        </div><!-- // .o-page__sidebar -->
+        <main class="o-page__content">
+            <header class="c-navbar u-mb-medium">
+                <button class="c-sidebar-toggle u-mr-small">
+                    <span class="c-sidebar-toggle__bar"></span>
+                    <span class="c-sidebar-toggle__bar"></span>
+                    <span class="c-sidebar-toggle__bar"></span>
+                </button>
+                <h2 class="c-navbar__title u-mr-auto"> </h2>
+                <div class="c-dropdown dropdown">
+                    <a class="c-avatar c-avatar--xsmall has-dropdown dropdown-toggle" href="#" id="dropdwonMenuAvatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="c-avatar__img" src="~/Content/admin/img/user.png" alt="User's Profile Picture">
+                    </a>
+                    <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdwonMenuAvatar">
+                        <a class="c-dropdown__item dropdown-item" href="#.">Edit Profile</a>
+                        <a class="c-dropdown__item dropdown-item" href="/Login/InternalUserLogout">Logout</a>
+                    </div>
+                </div>
+            </header>
+            @RenderBody()
+        </main><!-- // .o-page__content -->
+    }
+
+    else if (Session["userType"].ToString() == "EDSA Admin")
+    {
+        <!--EDSA Admin User-->
+        <div class="o-page__sidebar js-page-sidebar">
+            <div class="c-sidebar">
+                <a class="c-sidebar__brand" href="/Dashboard/Index">
+                    <img class="c-sidebar__brand-img" src="~/Content/admin/img/logo.png" alt="Logo"> Dashboard
+                </a>
+                <h4 class="c-sidebar__title">Dashboards</h4>
+                <ul class="c-sidebar__list">
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Vendor/AdminDashboard">
+                            <i class="fa fa-dashboard u-mr-xsmall"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Vendor/MyProfile">
+                            <i class="fa fa-wrench u-mr-xsmall"></i>My Profile
+                        </a>
+                    </li>
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Vendor/MeterApplications">
+                            <i class="fa fa-newspaper-o u-mr-xsmall"></i>Applications
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- // .c-sidebar -->
+        </div><!-- // .o-page__sidebar -->
+        <main class="o-page__content">
+            <header class="c-navbar u-mb-medium">
+                <button class="c-sidebar-toggle u-mr-small">
+                    <span class="c-sidebar-toggle__bar"></span>
+                    <span class="c-sidebar-toggle__bar"></span>
+                    <span class="c-sidebar-toggle__bar"></span>
+                </button>
+                <h2 class="c-navbar__title u-mr-auto">User: EDSA Admin</h2>
+                <div class="c-dropdown dropdown">
+                    <a class="c-avatar c-avatar--xsmall has-dropdown dropdown-toggle" href="#" id="dropdwonMenuAvatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="c-avatar__img" src="~/Content/admin/img/user.png" alt="User's Profile Picture">
+                    </a>
+                    <div class="c-dropdown__menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdwonMenuAvatar">
+                        <a class="c-dropdown__item dropdown-item" href="#.">Edit Profile</a>
+                        <a class="c-dropdown__item dropdown-item" href="/Login/InternalUserLogout">Logout</a>
+                    </div>
+                </div>
+            </header>
+            @RenderBody()
+        </main><!-- // .o-page__content -->
+    }
+    else
+    {
+        <!--Applicant User-->
+        <div class="o-page__sidebar js-page-sidebar">
+            <div class="c-sidebar">
+                <a class="c-sidebar__brand" href="/Dashboard/Index">
+                    <img class="c-sidebar__brand-img" src="~/Content/admin/img/logo.png" alt="Logo"> Dashboard
+                </a>
+                <h4 class="c-sidebar__title">Dashboards</h4>
+                <ul class="c-sidebar__list">
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Dashboard/Index">
+                            <i class="fa fa-dashboard u-mr-xsmall"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Dashboard/Profile">
+                            <i class="fa fa-user u-mr-xsmall"></i>Profile
+                        </a>
+                    </li>
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Dashboard/ApplyForMeter">
+                            <i class="fa fa-lightbulb-o u-mr-xsmall"></i>Apply For Meter
+                        </a>
+                    </li>
+                    <li class="c-sidebar__item">
+                        <a class="c-sidebar__link" href="/Login/Logout">
+                            <i class="fa fa-sign-out u-mr-xsmall"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- // .c-sidebar -->
+        </div><!-- // .o-page__sidebar -->
+        <main class="o-page__content">
+            <header class="c-navbar u-mb-medium">
+                <button class="c-sidebar-toggle u-mr-small">
+                    <span class="c-sidebar-toggle__bar"></span>
+                    <span class="c-sidebar-toggle__bar"></span>
+                    <span class="c-sidebar-toggle__bar"></span>
+                </button>
+                <h2 class="c-navbar__title u-mr-auto"> </h2>
+            </header>
+            @RenderBody()
+        </main><!-- // .o-page__content -->
+    }
+    @Scripts.Render("~/admin/bundles/js")
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown()
+        });
+    </script>
+</body>
+</html>

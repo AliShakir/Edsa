@@ -1,0 +1,102 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "AddInternalUser";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-lg-5">
+            @Html.DropDownList("UserRoles", (IEnumerable<SelectListItem>)ViewBag.UserRoles, "--User Category--", new { @class = "c-select" })
+        </div>
+        <div class="col-lg-5"></div>
+    </div>
+    <hr />
+    <div class="row" style="margin-top:10px">
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="FullName">Full Name: * </label>
+                <input class="c-input" type="text" id="FullName" placeholder="Full Name" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Email">Email: *</label>
+                <input class="c-input" type="text" id="Email" placeholder="Email" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Username">Username: *</label>
+                <input class="c-input" type="text" id="Username" placeholder="Username" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Password">Password: *</label>
+                <input class="c-input" type="password" id="Password" placeholder="Password" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="CPassword">Confirm Password: *</label>
+                <input class="c-input" type="Password" id="CPassword" placeholder="Password" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Phone">Phone: * </label>
+                <input class="c-input" type="text" id="Phone" placeholder="Phone" />
+            </div>
+
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Photo">Photo: *</label>
+                <input type="file" id="fileInput" />
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-5">
+            <button class="c-btn c-btn--secondary pull-right" id="btnSave">
+                <i class="fa fa-floppy-o "></i>&nbsp;  Save
+            </button>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSave').click(function () {
+            EdsaApp.GetAddInternalUser();
+        });
+    });
+    // To check password should contains atleast 6 alpha numeric characters.
+    function CheckPassword(pass) {
+        regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+        if (regex.exec(pass) == null) {
+            return true
+        }
+    }
+</script>
+
+<!--Loader init-->
+<script>
+    function displayLoader() {
+        HoldOn.open({
+            theme: 'sk-dot',
+            message: "<h4 style='color: #c4bdb9'>Please Wait</h4>"
+        });
+    }
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>

@@ -1,0 +1,311 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+
+<div class="container-fluid">
+    @if (Session["userType"].ToString() == "System Admin")
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="c-graph-card" data-mh="graph-cards">
+                        <div class="c-graph-card__content">
+                            <h3 class="c-graph-card__title">Next Payout</h3>
+                            <p class="c-graph-card__date">Activity from 4 Jan 2017 to 10 Jan 2017</p>
+                            <h4 class="c-graph-card__number">$2,190</h4>
+                            <p class="c-graph-card__status">You’ve made $230 Today</p>
+                        </div>
+
+                        <div class="c-graph-card__chart">
+                            <canvas id="js-chart-payout" width="300" height="74"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="c-graph-card" data-mh="graph-cards">
+                        <div class="c-graph-card__content">
+                            <h3 class="c-graph-card__title">Total Earnings</h3>
+                            <p class="c-graph-card__date">In 15 Months</p>
+                            <h4 class="c-graph-card__number">$23,580</h4>
+                            <p class="c-graph-card__status">Last Month you’ve made $2,980</p>
+                        </div>
+
+                        <div class="c-graph-card__chart">
+                            <canvas id="js-chart-earnings" width="300" height="74"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="c-progress-card" data-mh="graph-cards">
+                        <h3 class="c-progress-card__title">All Tasks Overview</h3>
+                        <p class="c-progress-card__date">Next 4 Weeks</p>
+
+                        <div class="c-progress-card__item">
+                            <div class="c-progress-card__label">Week 3</div>
+
+                            <div class="c-progress-card__progress c-progress c-progress--small">
+                                <div class="c-progress__bar u-bg-success" style="width:100%;">
+                                    <div class="c-progress__bar u-bg-fancy" style="width: 70%">
+                                        <div class="c-progress__bar u-bg-info" style="width: 50%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- // .c-progress-card__item -->
+
+                        <div class="c-progress-card__item">
+                            <div class="c-progress-card__label">Week 4</div>
+
+                            <div class="c-progress-card__progress c-progress c-progress--small">
+                                <div class="c-progress__bar u-bg-success" style="width:100%;">
+                                    <div class="c-progress__bar u-bg-fancy" style="width: 70%">
+                                        <div class="c-progress__bar u-bg-info" style="width: 50%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- // .c-progress-card__item -->
+
+                        <div class="c-progress-card__item">
+                            <div class="c-progress-card__label">Week 5</div>
+
+                            <div class="c-progress-card__progress c-progress c-progress--small">
+                                <div class="c-progress__bar u-bg-success" style="width:100%;">
+                                    <div class="c-progress__bar u-bg-fancy" style="width: 70%">
+                                        <div class="c-progress__bar u-bg-info" style="width: 50%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- // .c-progress-card__item -->
+
+                        <div class="c-progress-card__item">
+                            <div class="c-progress-card__label">Week 6</div>
+
+                            <div class="c-progress-card__progress c-progress c-progress--small">
+                                <div class="c-progress__bar u-bg-success" style="width:100%;">
+                                    <div class="c-progress__bar u-bg-fancy" style="width: 70%">
+                                        <div class="c-progress__bar u-bg-info" style="width: 50%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- // .c-progress-card__item -->
+
+                        <ul class="c-progress-card__legends">
+                            <li class="u-text-mute u-text-xsmall">
+                                <i class="c-progress-card__legend u-bg-fancy"></i>Progress
+                            </li>
+                            <li class="u-text-mute u-text-xsmall">
+                                <i class="c-progress-card__legend u-bg-info"></i>Due
+                            </li>
+                            <li class="u-text-mute u-text-xsmall">
+                                <i class="c-progress-card__legend u-bg-success"></i>OA
+                            </li>
+                            <li class="u-text-mute u-text-xsmall">
+                                <i class="c-progress-card__legend u-bg-danger"></i>Delegated
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <span class="c-divider has-text u-mb-medium">Active Projects</span>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 col-xl-3">
+
+                    <div class="c-project-card u-mb-medium">
+                        <img class="c-project-card__img" src="~/Content/admin/img/project-card1.jpg" alt="About the image">
+
+                        <div class="c-project-card__content">
+                            <div class="c-project-card__head">
+                                <h4 class="c-project-card__title">Magazine Images</h4>
+                                <p class="c-project-card__info">Kinfolk  |  Last Update: 21 Dec 2016</p>
+                            </div>
+
+
+                            <div class="c-project-card__meta">
+                                <p>
+                                    4,870 USD
+                                    <small class="u-block u-text-mute">Budget / Salary</small>
+                                </p>
+                                <p>
+                                    Early Dec 2017
+                                    <small class="u-block u-text-danger">10 Days Remaining</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6 col-lg-6 col-xl-3">
+
+                    <div class="c-project-card u-mb-medium">
+                        <img class="c-project-card__img" src="~/Content/admin/img/project-card2.jpg" alt="About the image">
+
+                        <div class="c-project-card__content">
+                            <div class="c-project-card__head">
+                                <h4 class="c-project-card__title">Design Competition 2018</h4>
+                                <p class="c-project-card__info">Gourmet| Last Update: 29 Dec 2017</p>
+                            </div>
+
+
+                            <div class="c-project-card__meta">
+                                <p>
+                                    9,680 USD
+                                    <small class="u-block u-text-mute">Budget / Salary</small>
+                                </p>
+                                <p>
+                                    Late January
+                                    <small class="u-block u-text-mute">Deadline</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6 col-lg-6 col-xl-3">
+
+                    <div class="c-project-card u-mb-medium">
+                        <img class="c-project-card__img" src="~/Content/admin/img/project-card3.jpg" alt="About the image">
+
+                        <div class="c-project-card__content">
+                            <div class="c-project-card__head">
+                                <h4 class="c-project-card__title">New Dashboard</h4>
+                                <p class="c-project-card__info">Tapdaq  |  Last Update: 28 Nov 2017</p>
+                            </div>
+
+
+                            <div class="c-project-card__meta">
+                                <p>
+                                    4,870 USD
+                                    <small class="u-block u-text-mute">Budget / Salary</small>
+                                </p>
+                                <p>
+                                    Early Dec 2017
+                                    <small class="u-block u-text-danger">15 Days Remaining</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6 col-lg-6 col-xl-3">
+
+                    <div class="c-project-card u-mb-medium">
+                        <img class="c-project-card__img" src="~/Content/admin/img/project-card4.jpg" alt="About the image">
+
+                        <div class="c-project-card__content">
+                            <div class="c-project-card__head">
+                                <h4 class="c-project-card__title">Mobile App</h4>
+                                <p class="c-project-card__info">Cofee & Co.  |  Last Update: 1 Dec 2016</p>
+                            </div>
+
+
+                            <div class="c-project-card__meta">
+                                <p>
+                                    8,760 USD
+                                    <small class="u-block u-text-mute">Budget / Salary</small>
+                                </p>
+                                <p>
+                                    Early Dec 2017
+                                    <small class="u-block u-text-mute">6 Days Remaining</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- // .row -->
+
+
+
+        </div><!-- // .container -->
+    }
+    @*else
+    {
+        <div class="c-table-responsive@tablet">
+            @foreach (var item in Model)
+            {
+                if (item.edsaMeterApplication == null)
+                {
+                    <table id="tbl_PC" class="c-table">
+                        <caption class="c-table__title">
+                            Application Not Found !
+                        </caption>
+                    </table>
+                }
+                else
+                {
+                    string FullName = item.edsaIndividualUser.FirstName + " " + item.edsaIndividualUser.MiddleName + " " + item.edsaIndividualUser.LastName;
+                    <table id="tbl_PC" class="c-table">
+                        <caption class="c-table__title">
+                            My Application
+                        </caption>
+                        <thead class="c-table__head c-table__head--slim">
+                            <tr class="c-table__row">
+                                <th style="display:none" class="c-table__cell c-table__cell--head">Id</th>
+                                <th class="c-table__cell c-table__cell--head">Full Name</th>
+                                <th class="c-table__cell c-table__cell--head">Telephone</th>
+                                <th class="c-table__cell c-table__cell--head">Address</th>
+                                <th class="c-table__cell c-table__cell--head"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="c-table__row c-table__row--danger">
+                                <td class="c-table__cell" style="display:none">@item.edsaIndividualUser.id</td>
+                                <td class="c-table__cell">@FullName </td>
+                                <td class="c-table__cell">@item.edsaIndividualUser.TelNo</td>
+                                <td class="c-table__cell">@item.edsaIndividualUser.Address</td>
+                                <td class="c-table__cell">
+                                    <button class="c-btn c-btn--danger btnDelete" id="btnDelete" onclick="DeleteApplication('@item.edsaIndividualUser.id')">Delete</button>
+                                    <a type="button" class="c-btn c-btn--secondary" data-toggle="popover" data-placement="top" data-content="Your application has been received. Our agent will contact you soon." tabindex="0" href="#!">
+                                        Status
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    }*@
+
+</div>
+<div class="c-modal modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modal1">
+    <div class="c-modal__dialog modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="c-card u-p-medium u-mh-auto" style="max-width:500px;">
+                <h4>
+                    Do you want to delete your application ?
+                </h4>
+                <div class="c-field u-mb-small">
+                    <br />
+                </div>
+                <button class="c-btn c-btn--success" data-dismiss="modal" id="btnYes">
+                    Yes
+                </button>
+                <button class="c-btn c-btn--danger" data-dismiss="modal" id="btnNo">
+                    No
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    function DeleteApplication(id) {
+        EdsaApp.GetDeleteMeterApplication(id);
+    }
+</script>
+

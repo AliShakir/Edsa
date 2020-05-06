@@ -1,0 +1,122 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-lg-7">
+
+        </div>
+        <div class="col-lg-5">
+            @Html.DropDownList("UserRoles", (IEnumerable<SelectListItem>)ViewBag.UserRoles, "--User Category--", new { @class = "c-select" })
+        </div>
+    </div>
+    <table id="UsersTable" class="c-table">
+        <caption class="c-table__title">
+            Users
+        </caption>
+        <thead class="c-table__head c-table__head--slim">
+            <tr class="c-table__row">
+                <th style="display:none" class="c-table__cell c-table__cell--head">Id</th>
+                <th class="c-table__cell c-table__cell--head">Full Name</th>
+                <th class="c-table__cell c-table__cell--head">Email</th>
+                <th class="c-table__cell c-table__cell--head">Username</th>
+                <th class="c-table__cell c-table__cell--head">Phone</th>
+                <th class="c-table__cell c-table__cell--head">Photo</th>
+                <th class="c-table__cell c-table__cell--head"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="c-table__row">
+                    <td class="c-table__cell" style="display:none">@item.edsaUsers.Id</td>
+                    <td class="c-table__cell">@item.edsaUsers.FullName</td>
+                    <td class="c-table__cell">@item.edsaUsers.Email</td>
+                    <td class="c-table__cell">@item.edsaUsers.Username</td>
+                    <td class="c-table__cell">@item.edsaUsers.PhoneNumber</td>
+                    <td class="c-table__cell">
+                        @if (@item.edsaUsers.Photo == null)
+                        {
+                            <div class="o-media">
+                                <div class="o-media__img u-mr-xsmall">
+                                    <div class="c-avatar c-avatar--small">
+                                        <img class="c-avatar__img" src="~/Content/admin/img/No-Image.png" />
+                                    </div>
+                                </div>
+                                <div class="o-media__body">
+                                    <small class="u-block u-text-mute" style="visibility:hidden">Moscow Office</small>
+                                    No Image
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="o-media">
+                                <div class="o-media__img u-mr-xsmall">
+                                    <div class="c-avatar c-avatar--small">
+                                        <img class="c-avatar__img" src="~/ProfileImages/@item.edsaUsers.Photo" />
+                                    </div>
+                                </div>
+                                <div class="o-media__body">
+                                    <small class="u-block u-text-mute" style="visibility:hidden">Moscow Office</small>
+                                    @item.edsaUsers.FullName
+                                </div>
+                            </div>
+                        }
+                    </td>
+                    <td class="c-table__cell">
+                        <button class="c-btn c-btn--info btnEdit" id="btnEdit" onclick="EditInternalUser('@item.edsaUsers.Id')">Edit</button>
+                        <button class="c-btn c-btn--danger btnDelete" id="btnDelete" onclick="DeleteInternalUser('@item.edsaUsers.Id')">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="c-modal modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modal1">
+    <div class="c-modal__dialog modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="c-card u-p-medium u-mh-auto" style="max-width:500px;">
+                <h4>
+                    Do you want to delete this record ?
+                </h4>
+                <div class="c-field u-mb-small">
+                    <br />
+                </div>
+                <button class="c-btn c-btn--success" data-dismiss="modal" id="btnYes">
+                    Yes
+                </button>
+                <button class="c-btn c-btn--danger" data-dismiss="modal" id="btnNo">
+                    No
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    function DeleteInternalUser(id) {
+        EdsaApp.GetInternalUser(id);
+    }
+    function EditInternalUser(id) {
+        window.location = '/User/EditInternalUser?id=' + id
+    }
+    $(document).ready(function () {
+        $('#UserRoles').on("select2:select", function (e) {
+            var searchVal = $(this).val();
+            EdsaApp.GetFilterlUser(searchVal);
+        });
+    });
+    // To check password should contains atleast 6 alpha numeric characters.
+    function CheckPassword(pass) {
+        regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+        if (regex.exec(pass) == null) {
+            return true
+        }
+    }
+</script>
+

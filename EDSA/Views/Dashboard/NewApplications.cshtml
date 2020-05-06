@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "NewApplications";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <table id="tbl_PC" class="c-table">
+        <caption class="c-table__title">
+            New Applications
+        </caption>
+        <thead class="c-table__head c-table__head--slim">
+            <tr class="c-table__row">
+                <th style="display:none" class="c-table__cell c-table__cell--head">Id</th>
+                <th class="c-table__cell c-table__cell--head">Full Name</th>
+                <th class="c-table__cell c-table__cell--head">ID No</th>
+                <th class="c-table__cell c-table__cell--head">Telephone</th>
+                <th class="c-table__cell c-table__cell--head">Address</th>
+                <th class="c-table__cell c-table__cell--head"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string FullName = item.edsaIndividualUser.FirstName + " " + item.edsaIndividualUser.MiddleName + " " + item.edsaIndividualUser.LastName;
+                <tr class="c-table__row">
+                    <td class="c-table__cell" style="display:none">@item.edsaIndividualUser.id</td>
+                    <td class="c-table__cell">@FullName</td>
+                    <td class="c-table__cell">@item.edsaIndividualUser.IDNo</td>
+                    <td class="c-table__cell">@item.edsaIndividualUser.TelNo</td>
+                    <td class="c-table__cell">@item.edsaIndividualUser.Address</td>
+                    <td class="c-table__cell">
+                        <button class="c-btn c-btn--danger btnDelete" id="btnDelete" onclick="DeleteApplication('@item.edsaIndividualUser.id')">Delete</button>
+                            <a type="button" class="c-btn c-btn--success" href="#" onclick="ViewApplication('@item.edsaIndividualUser.id')">
+                                View
+                            </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    function ViewApplication(id) {
+        location.href = "/view-application.aspx?id=" + id;
+    }
+</script>

@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <div class="row" style="margin-top:10px">
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="RegisteredName">Registered Name: </label>
+                <input class="c-input" type="text" id="RegisteredName" placeholder="Registered Name" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="TelNo">Telephone No: *</label>
+                <input class="c-input" type="text" id="TelNo" placeholder="Telephone No" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Email">Email Address: *</label>
+                <input class="c-input" type="text" id="Email" placeholder="Email Address" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="BusinessRegNo">Buniness Registration No: *</label>
+                <input class="c-input" type="text" id="BusinessRegNo" placeholder="Buniness Registration No" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="ContactPerson">Contact Person: *</label>
+                <input class="c-input" type="text" id="ContactPerson" placeholder="Contact Person" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="VendingLicenseAreaCoverage">Vending License Area Coverage: * </label>
+                <input class="c-input" type="text" id="VendingLicenseAreaCoverage" placeholder="Vending License Area Coverage" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="InvetoryThreshold">Inventory Threshold Levels: </label>
+                <input class="c-input" type="number" id="InvetoryThreshold" placeholder="Inventory Threshold" />
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="BusinessAddress">Business Address: *</label>
+                <textarea class="c-input" id="BusinessAddress" placeholder="Address"></textarea>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-5">
+            <button class="c-btn c-btn--secondary pull-right" id="btnSave">
+                <i class="fa fa-floppy-o"></i> &nbsp;Save
+            </button>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    $('#btnSave').click(function () {
+        var UserObj = {
+            RegisteredName: $('#RegisteredName').val(),
+            TelNo: $('#TelNo').val(),
+            Email: $('#Email').val(),
+            BusinessRegNo: $('#BusinessRegNo').val(),
+            ContactPerson: $('#ContactPerson').val(),
+            VendingLicenseAreaCoverage: $('#VendingLicenseAreaCoverage').val(),
+            InvetoryThreshold: $('#InvetoryThreshold').val(),
+            BusinessAddress: $('#BusinessAddress').val(),
+        }
+        $.ajax({
+            url: "/Vendor/AddVendorRegistrationData",
+            type: 'POST',
+            data: JSON.stringify(UserObj),
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.responseText, "Message");
+                }
+            }
+        });
+    });
+</script>

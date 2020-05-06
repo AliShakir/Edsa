@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "MeterApplications";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-lg-7">
+
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="FullName">Filter Record</label>
+                <select class="c-select" id="ddlFilter">
+                    <option value="1">Pending</option>
+                    <option value="2">Approved</option>
+                    <option value="3">Rejected</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <table id="ApplicationsTable" class="c-table">
+        <caption class="c-table__title">
+            Meter Applications
+        </caption>
+        <thead class="c-table__head c-table__head--slim">
+            <tr class="c-table__row">
+                <th style="display:none" class="c-table__cell c-table__cell--head">Id</th>
+                <th class="c-table__cell c-table__cell--head">Full Name</th>
+                <th class="c-table__cell c-table__cell--head">Telephone No</th>
+                <th class="c-table__cell c-table__cell--head">Identification Type</th>
+                <th class="c-table__cell c-table__cell--head">Type Of Premise</th>
+                <th class="c-table__cell c-table__cell--head"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string FullName = item.edsaIndividualUser.FirstName + " " + item.edsaIndividualUser.MiddleName + " " + item.edsaIndividualUser.LastName;
+                <tr class="c-table__row">
+                    <td class="c-table__cell" style="display:none">@item.edsaIndividualUser.id</td>
+                    <td class="c-table__cell">@FullName</td>
+                    <td class="c-table__cell">@item.edsaIndividualUser.TelNo</td>
+                    <td class="c-table__cell">@item.edsaIndividualUser.IdentificationType</td>
+                    <td class="c-table__cell">@item.edsaIndividualUser.TypeOfPremise</td>
+                    <td class="c-table__cell">
+                        <button class="c-btn c-btn--info btnReview" id="btnReview" onclick="ReviewApplication('@item.edsaIndividualUser.id')">
+                            <i class="fa fa-eye"></i> &nbsp; Review
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    function ReviewApplication(id) {
+        window.location = '/Vendor/ReviewApplication?id=' + id
+    }
+    $(document).ready(function () {
+        $('#ddlFilter').on("select2:select", function (e) {
+            EdsaApp.GetfilterMeterApplicationByStatus();
+        });
+    });
+</script>

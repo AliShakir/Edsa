@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "ApplyForMeter";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <h4>Apply For Meter</h4>
+    @foreach (var item in Model)
+    {
+        string FullName = item.edsaIndividualUser.FirstName + " " + item.edsaIndividualUser.MiddleName + " " + item.edsaIndividualUser.LastName;
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <input type="hidden" value="@item.edsaIndividualUser.id" id="Id" />
+                <input type="hidden" value="@item.edsaLogin.id" id="LoginId" />
+                <label class="c-field__label" for="Name">Full Name </label>
+                <input class="c-input" type="text" id="FirstName" placeholder="First Name" value="@FullName" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="IDNo">ID No</label>
+                <input class="c-input" type="text" id="IDNo" placeholder="ID No" value="@item.edsaIndividualUser.IDNo" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="TypeOfPremise">Identification</label>
+                @Html.DropDownList("IdentificationType", (IEnumerable<SelectListItem>)ViewBag.IdentificationType, @item.edsaIndividualUser.IdentificationType, new { @class = "c-select" })
+            </div>
+        </div>
+        <div class="col-lg-5">            
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="TelNo">Telephone No</label>
+                <input class="c-input" type="text" id="TelNo" placeholder="Telephone No" value="@item.edsaIndividualUser.TelNo" />
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="Address">Address</label>
+                <textarea class="c-input" id="Address" placeholder="Address">@item.edsaIndividualUser.Address</textarea>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="TypeOfPremise">Type of Premise</label>
+                @Html.DropDownList("TypeOfPremise", (IEnumerable<SelectListItem>)ViewBag.TypeofPremise, @item.edsaIndividualUser.TypeOfPremise, new { @class = "c-select" })
+            </div>
+        </div>
+    </div>
+    }
+    <div class="row">
+        <div class="col-lg-5">
+
+        </div>
+        <div class="col-lg-5">
+            <button class="c-btn c-btn--primary pull-right" id="btnApply">
+                Apply
+            </button>            
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    $('#btnApply').click(function () {
+        var UserObj = {
+            UserId: $('#Id').val(),
+        }
+        EdsaApp.GetApplyForMeter(UserObj);
+    })
+</script>

@@ -1,0 +1,888 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EdsaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EdsaEquipments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AirConditioners" Type="nvarchar" MaxLength="50" />
+          <Property Name="AirConditionersQty" Type="int" />
+          <Property Name="AirConditionersRating" Type="int" />
+          <Property Name="ElectricIron" Type="nvarchar" MaxLength="50" />
+          <Property Name="ElectricIronQty" Type="int" />
+          <Property Name="ElectricIronRating" Type="int" />
+          <Property Name="WasingMachine" Type="nvarchar" MaxLength="50" />
+          <Property Name="WasingMachineQty" Type="int" />
+          <Property Name="WasingMachineRating" Type="int" />
+          <Property Name="ElectricDryer" Type="nvarchar" MaxLength="50" />
+          <Property Name="ElectricDryerQty" Type="int" />
+          <Property Name="ElectricDryerRating" Type="int" />
+          <Property Name="ElectricOven" Type="nvarchar" MaxLength="50" />
+          <Property Name="ElectricOvenQty" Type="int" />
+          <Property Name="ElectricOvenRating" Type="int" />
+          <Property Name="Fridge" Type="nvarchar" MaxLength="50" />
+          <Property Name="FridgeQty" Type="int" />
+          <Property Name="FridgeRating" Type="int" />
+          <Property Name="ElectricFans" Type="nvarchar" MaxLength="50" />
+          <Property Name="ElectricFansQty" Type="int" />
+          <Property Name="ElectricFansRating" Type="int" />
+          <Property Name="ElectricBulbs" Type="nvarchar" MaxLength="50" />
+          <Property Name="ElectricBulbsQty" Type="int" />
+          <Property Name="ElectricBulbsRating" Type="int" />
+          <Property Name="Computers" Type="nvarchar" MaxLength="50" />
+          <Property Name="ComputerQty" Type="int" />
+          <Property Name="ComputerRating" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="EdsaIndividualUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Address" Type="nvarchar" MaxLength="350" />
+          <Property Name="TelNo" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdentificationType" Type="nvarchar" MaxLength="150" />
+          <Property Name="IDNo" Type="nvarchar" MaxLength="150" />
+          <Property Name="TypeOfPremise" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="EdsaLightingAndPower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LightPoints" Type="nvarchar" MaxLength="50" />
+          <Property Name="LightPointsQty" Type="int" />
+          <Property Name="LightPointsRating" Type="int" />
+          <Property Name="PowerSocketPoints" Type="nvarchar" MaxLength="50" />
+          <Property Name="PowerSocketPointsQty" Type="nchar" MaxLength="10" />
+          <Property Name="PowerSocketPointsRating" Type="nchar" MaxLength="10" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="EdsaLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="150" />
+          <Property Name="password" Type="nvarchar" MaxLength="150" />
+          <Property Name="userType" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="EdsaMeterApplications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MeterTypeId" Type="int" Nullable="false" />
+          <Property Name="ReferenceNo" Type="nvarchar" MaxLength="1" />
+          <Property Name="RequestedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="1" />
+          <Property Name="AssignedForSurvey" Type="bit" Nullable="false" />
+          <Property Name="AssignedTo" Type="int" Nullable="false" />
+          <Property Name="AssignedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ContReport" Type="nvarchar" MaxLength="1" />
+          <Property Name="ContFilePath" Type="nvarchar" MaxLength="1" />
+          <Property Name="ContReportDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AuditComment" Type="nvarchar" MaxLength="1" />
+          <Property Name="AuditDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AuditedBy" Type="int" Nullable="false" />
+          <Property Name="EdsaMeterTypesId" Type="int" />
+          <Property Name="EdsaUsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="EdsaMeterInventories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EdsaRecommendations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeterType" Type="nvarchar" MaxLength="50" />
+          <Property Name="comment" Type="nvarchar" MaxLength="250" />
+          <Property Name="MeterApplicationId" Type="int" />
+          <Property Name="AdminId" Type="int" />
+          <Property Name="ApplicationStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EdsaRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EdsaUserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <EntityType Name="EdsaUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EdsaVendorRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegisteredName" Type="nvarchar" MaxLength="250" />
+          <Property Name="BusinessAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="TelNo" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="BusinessRegNo" Type="nvarchar" MaxLength="250" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="250" />
+          <Property Name="VendingLicenseAreaCoverage" Type="nvarchar" MaxLength="250" />
+          <Property Name="InvetoryThreshold" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="MeterTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_EdsaEquipments_PK_IndividualUsers">
+          <End Role="EdsaIndividualUser" Type="Self.EdsaIndividualUser" Multiplicity="0..1" />
+          <End Role="EdsaEquipments" Type="Self.EdsaEquipments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaIndividualUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EdsaEquipments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaLightingAndPower_PK_IndividualUsers">
+          <End Role="EdsaIndividualUser" Type="Self.EdsaIndividualUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaLightingAndPower" Type="Self.EdsaLightingAndPower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaIndividualUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EdsaLightingAndPower">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId">
+          <End Role="EdsaUsers" Type="Self.EdsaUsers" Multiplicity="0..1" />
+          <End Role="EdsaMeterApplications" Type="Self.EdsaMeterApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaMeterApplications">
+              <PropertyRef Name="EdsaUsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId">
+          <End Role="MeterTypes" Type="Self.MeterTypes" Multiplicity="0..1" />
+          <End Role="EdsaMeterApplications" Type="Self.EdsaMeterApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeterTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaMeterApplications">
+              <PropertyRef Name="EdsaMeterTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaMeterInventories_MeterTypes_Id">
+          <End Role="MeterTypes" Type="Self.MeterTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaMeterInventories" Type="Self.EdsaMeterInventories" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MeterTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaMeterInventories">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaRecommendations_EdsaMeterApplications">
+          <End Role="EdsaMeterApplications" Type="Self.EdsaMeterApplications" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaRecommendations" Type="Self.EdsaRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaMeterApplications">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaRecommendations">
+              <PropertyRef Name="MeterApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaRecommendations_EdsaUsers">
+          <End Role="EdsaUsers" Type="Self.EdsaUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaRecommendations" Type="Self.EdsaRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaRecommendations">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaUserRoles_EdsaUses">
+          <End Role="EdsaUsers" Type="Self.EdsaUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaUserRoles" Type="Self.EdsaUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLogin_PK_tblIndividualUser">
+          <End Role="EdsaIndividualUser" Type="Self.EdsaIndividualUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaLogin" Type="Self.EdsaLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaIndividualUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EdsaLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EdsaModelStoreContainer">
+          <EntitySet Name="EdsaEquipments" EntityType="Self.EdsaEquipments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaIndividualUser" EntityType="Self.EdsaIndividualUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaLightingAndPower" EntityType="Self.EdsaLightingAndPower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaLogin" EntityType="Self.EdsaLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaMeterApplications" EntityType="Self.EdsaMeterApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaMeterInventories" EntityType="Self.EdsaMeterInventories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaRecommendations" EntityType="Self.EdsaRecommendations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaRoles" EntityType="Self.EdsaRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaUserRoles" EntityType="Self.EdsaUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaUsers" EntityType="Self.EdsaUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdsaVendorRegistration" EntityType="Self.EdsaVendorRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeterTypes" EntityType="Self.MeterTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EdsaEquipments_PK_IndividualUsers" Association="Self.FK_EdsaEquipments_PK_IndividualUsers">
+            <End Role="EdsaIndividualUser" EntitySet="EdsaIndividualUser" />
+            <End Role="EdsaEquipments" EntitySet="EdsaEquipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaLightingAndPower_PK_IndividualUsers" Association="Self.FK_EdsaLightingAndPower_PK_IndividualUsers">
+            <End Role="EdsaIndividualUser" EntitySet="EdsaIndividualUser" />
+            <End Role="EdsaLightingAndPower" EntitySet="EdsaLightingAndPower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId" Association="Self.FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId">
+            <End Role="EdsaUsers" EntitySet="EdsaUsers" />
+            <End Role="EdsaMeterApplications" EntitySet="EdsaMeterApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId" Association="Self.FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId">
+            <End Role="MeterTypes" EntitySet="MeterTypes" />
+            <End Role="EdsaMeterApplications" EntitySet="EdsaMeterApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaMeterInventories_MeterTypes_Id" Association="Self.FK_EdsaMeterInventories_MeterTypes_Id">
+            <End Role="MeterTypes" EntitySet="MeterTypes" />
+            <End Role="EdsaMeterInventories" EntitySet="EdsaMeterInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaRecommendations_EdsaMeterApplications" Association="Self.FK_EdsaRecommendations_EdsaMeterApplications">
+            <End Role="EdsaMeterApplications" EntitySet="EdsaMeterApplications" />
+            <End Role="EdsaRecommendations" EntitySet="EdsaRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaRecommendations_EdsaUsers" Association="Self.FK_EdsaRecommendations_EdsaUsers">
+            <End Role="EdsaUsers" EntitySet="EdsaUsers" />
+            <End Role="EdsaRecommendations" EntitySet="EdsaRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaUserRoles_EdsaUses" Association="Self.FK_EdsaUserRoles_EdsaUses">
+            <End Role="EdsaUsers" EntitySet="EdsaUsers" />
+            <End Role="EdsaUserRoles" EntitySet="EdsaUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLogin_PK_tblIndividualUser" Association="Self.FK_tblLogin_PK_tblIndividualUser">
+            <End Role="EdsaIndividualUser" EntitySet="EdsaIndividualUser" />
+            <End Role="EdsaLogin" EntitySet="EdsaLogin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EdsaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EdsaIndividualUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="TelNo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdentificationType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IDNo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TypeOfPremise" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EdsaLogins" Relationship="Self.FK_tblLogin_PK_tblIndividualUser" FromRole="EdsaIndividualUser" ToRole="EdsaLogin" />
+          <NavigationProperty Name="EdsaEquipments" Relationship="EdsaModel.FK_EdsaEquipments_PK_IndividualUsers" FromRole="EdsaIndividualUser" ToRole="EdsaEquipment" />
+          <NavigationProperty Name="EdsaLightingAndPowers" Relationship="EdsaModel.FK_EdsaLightingAndPower_PK_IndividualUsers" FromRole="EdsaIndividualUser" ToRole="EdsaLightingAndPower" />
+        </EntityType>
+        <EntityType Name="EdsaLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="userType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="EdsaIndividualUser" Relationship="Self.FK_tblLogin_PK_tblIndividualUser" FromRole="EdsaLogin" ToRole="EdsaIndividualUser" />
+        </EntityType>
+        <EntityType Name="EdsaMeterApplication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MeterTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceNo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="RequestedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedForSurvey" Type="Boolean" Nullable="false" />
+          <Property Name="AssignedTo" Type="Int32" Nullable="false" />
+          <Property Name="AssignedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ContReport" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ContFilePath" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ContReportDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AuditComment" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AuditDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AuditedBy" Type="Int32" Nullable="false" />
+          <Property Name="EdsaMeterTypesId" Type="Int32" />
+          <Property Name="EdsaUsersId" Type="Int32" />
+          <NavigationProperty Name="EdsaUser" Relationship="Self.FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId" FromRole="EdsaMeterApplications" ToRole="EdsaUsers" />
+          <NavigationProperty Name="MeterType" Relationship="Self.FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId" FromRole="EdsaMeterApplications" ToRole="MeterTypes" />
+          <NavigationProperty Name="EdsaRecommendations" Relationship="EdsaModel.FK_EdsaRecommendations_EdsaMeterApplications" FromRole="EdsaMeterApplication" ToRole="EdsaRecommendation" />
+        </EntityType>
+        <EntityType Name="EdsaMeterInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MeterType" Relationship="Self.FK_EdsaMeterInventories_MeterTypes_Id" FromRole="EdsaMeterInventories" ToRole="MeterTypes" />
+        </EntityType>
+        <EntityType Name="EdsaRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EdsaUserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="EdsaUser" Relationship="Self.FK_EdsaUserRoles_EdsaUses" FromRole="EdsaUserRoles" ToRole="EdsaUsers" />
+        </EntityType>
+        <EntityType Name="EdsaUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EdsaMeterApplications" Relationship="Self.FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId" FromRole="EdsaUsers" ToRole="EdsaMeterApplications" />
+          <NavigationProperty Name="EdsaUserRoles" Relationship="Self.FK_EdsaUserRoles_EdsaUses" FromRole="EdsaUsers" ToRole="EdsaUserRoles" />
+          <NavigationProperty Name="EdsaRecommendations" Relationship="EdsaModel.FK_EdsaRecommendations_EdsaUsers" FromRole="EdsaUser" ToRole="EdsaRecommendation" />
+        </EntityType>
+        <EntityType Name="MeterType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EdsaMeterApplications" Relationship="Self.FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId" FromRole="MeterTypes" ToRole="EdsaMeterApplications" />
+          <NavigationProperty Name="EdsaMeterInventory" Relationship="Self.FK_EdsaMeterInventories_MeterTypes_Id" FromRole="MeterTypes" ToRole="EdsaMeterInventories" />
+        </EntityType>
+        <Association Name="FK_tblLogin_PK_tblIndividualUser">
+          <End Role="EdsaIndividualUser" Type="Self.EdsaIndividualUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaLogin" Type="Self.EdsaLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaIndividualUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EdsaLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId">
+          <End Role="EdsaUsers" Type="Self.EdsaUser" Multiplicity="0..1" />
+          <End Role="EdsaMeterApplications" Type="Self.EdsaMeterApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaMeterApplications">
+              <PropertyRef Name="EdsaUsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId">
+          <End Role="MeterTypes" Type="Self.MeterType" Multiplicity="0..1" />
+          <End Role="EdsaMeterApplications" Type="Self.EdsaMeterApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeterTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaMeterApplications">
+              <PropertyRef Name="EdsaMeterTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaMeterInventories_MeterTypes_Id">
+          <End Role="MeterTypes" Type="Self.MeterType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaMeterInventories" Type="Self.EdsaMeterInventory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MeterTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaMeterInventories">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaUserRoles_EdsaUses">
+          <End Role="EdsaUsers" Type="Self.EdsaUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EdsaUserRoles" Type="Self.EdsaUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EdsaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EdsaIndividualUsers" EntityType="Self.EdsaIndividualUser" />
+          <EntitySet Name="EdsaLogins" EntityType="Self.EdsaLogin" />
+          <EntitySet Name="EdsaMeterApplications" EntityType="Self.EdsaMeterApplication" />
+          <EntitySet Name="EdsaMeterInventories" EntityType="Self.EdsaMeterInventory" />
+          <EntitySet Name="EdsaRoles" EntityType="Self.EdsaRole" />
+          <EntitySet Name="EdsaUserRoles" EntityType="Self.EdsaUserRole" />
+          <EntitySet Name="EdsaUsers" EntityType="Self.EdsaUser" />
+          <EntitySet Name="MeterTypes" EntityType="Self.MeterType" />
+          <AssociationSet Name="FK_tblLogin_PK_tblIndividualUser" Association="Self.FK_tblLogin_PK_tblIndividualUser">
+            <End Role="EdsaIndividualUser" EntitySet="EdsaIndividualUsers" />
+            <End Role="EdsaLogin" EntitySet="EdsaLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId" Association="Self.FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId">
+            <End Role="EdsaUsers" EntitySet="EdsaUsers" />
+            <End Role="EdsaMeterApplications" EntitySet="EdsaMeterApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId" Association="Self.FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId">
+            <End Role="MeterTypes" EntitySet="MeterTypes" />
+            <End Role="EdsaMeterApplications" EntitySet="EdsaMeterApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaMeterInventories_MeterTypes_Id" Association="Self.FK_EdsaMeterInventories_MeterTypes_Id">
+            <End Role="MeterTypes" EntitySet="MeterTypes" />
+            <End Role="EdsaMeterInventories" EntitySet="EdsaMeterInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaUserRoles_EdsaUses" Association="Self.FK_EdsaUserRoles_EdsaUses">
+            <End Role="EdsaUsers" EntitySet="EdsaUsers" />
+            <End Role="EdsaUserRoles" EntitySet="EdsaUserRoles" />
+          </AssociationSet>
+          <EntitySet Name="EdsaVendorRegistrations" EntityType="EdsaModel.EdsaVendorRegistration" />
+          <EntitySet Name="EdsaLightingAndPowers" EntityType="EdsaModel.EdsaLightingAndPower" />
+          <EntitySet Name="EdsaEquipments" EntityType="EdsaModel.EdsaEquipment" />
+          <AssociationSet Name="FK_EdsaEquipments_PK_IndividualUsers" Association="EdsaModel.FK_EdsaEquipments_PK_IndividualUsers">
+            <End Role="EdsaIndividualUser" EntitySet="EdsaIndividualUsers" />
+            <End Role="EdsaEquipment" EntitySet="EdsaEquipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaLightingAndPower_PK_IndividualUsers" Association="EdsaModel.FK_EdsaLightingAndPower_PK_IndividualUsers">
+            <End Role="EdsaIndividualUser" EntitySet="EdsaIndividualUsers" />
+            <End Role="EdsaLightingAndPower" EntitySet="EdsaLightingAndPowers" />
+          </AssociationSet>
+          <EntitySet Name="EdsaRecommendations" EntityType="EdsaModel.EdsaRecommendation" />
+          <AssociationSet Name="FK_EdsaRecommendations_EdsaMeterApplications" Association="EdsaModel.FK_EdsaRecommendations_EdsaMeterApplications">
+            <End Role="EdsaMeterApplication" EntitySet="EdsaMeterApplications" />
+            <End Role="EdsaRecommendation" EntitySet="EdsaRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdsaRecommendations_EdsaUsers" Association="EdsaModel.FK_EdsaRecommendations_EdsaUsers">
+            <End Role="EdsaUser" EntitySet="EdsaUsers" />
+            <End Role="EdsaRecommendation" EntitySet="EdsaRecommendations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EdsaVendorRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegisteredName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TelNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessRegNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VendingLicenseAreaCoverage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="InvetoryThreshold" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EdsaLightingAndPower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LightPoints" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LightPointsQty" Type="Int32" />
+          <Property Name="LightPointsRating" Type="Int32" />
+          <Property Name="PowerSocketPoints" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PowerSocketPointsQty" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PowerSocketPointsRating" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="EdsaIndividualUser" Relationship="EdsaModel.FK_EdsaLightingAndPower_PK_IndividualUsers" FromRole="EdsaLightingAndPower" ToRole="EdsaIndividualUser" />
+        </EntityType>
+        <EntityType Name="EdsaEquipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AirConditioners" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AirConditionersQty" Type="Int32" />
+          <Property Name="AirConditionersRating" Type="Int32" />
+          <Property Name="ElectricIron" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ElectricIronQty" Type="Int32" />
+          <Property Name="ElectricIronRating" Type="Int32" />
+          <Property Name="WasingMachine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WasingMachineQty" Type="Int32" />
+          <Property Name="WasingMachineRating" Type="Int32" />
+          <Property Name="ElectricDryer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ElectricDryerQty" Type="Int32" />
+          <Property Name="ElectricDryerRating" Type="Int32" />
+          <Property Name="ElectricOven" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ElectricOvenQty" Type="Int32" />
+          <Property Name="ElectricOvenRating" Type="Int32" />
+          <Property Name="Fridge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FridgeQty" Type="Int32" />
+          <Property Name="FridgeRating" Type="Int32" />
+          <Property Name="ElectricFans" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ElectricFansQty" Type="Int32" />
+          <Property Name="ElectricFansRating" Type="Int32" />
+          <Property Name="ElectricBulbs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ElectricBulbsQty" Type="Int32" />
+          <Property Name="ElectricBulbsRating" Type="Int32" />
+          <Property Name="Computers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComputerQty" Type="Int32" />
+          <Property Name="ComputerRating" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="EdsaIndividualUser" Relationship="EdsaModel.FK_EdsaEquipments_PK_IndividualUsers" FromRole="EdsaEquipment" ToRole="EdsaIndividualUser" />
+        </EntityType>
+        <Association Name="FK_EdsaEquipments_PK_IndividualUsers">
+          <End Type="EdsaModel.EdsaIndividualUser" Role="EdsaIndividualUser" Multiplicity="0..1" />
+          <End Type="EdsaModel.EdsaEquipment" Role="EdsaEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaIndividualUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EdsaEquipment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaLightingAndPower_PK_IndividualUsers">
+          <End Type="EdsaModel.EdsaIndividualUser" Role="EdsaIndividualUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EdsaModel.EdsaLightingAndPower" Role="EdsaLightingAndPower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaIndividualUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EdsaLightingAndPower">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EdsaRecommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MeterType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MeterApplicationId" Type="Int32" />
+          <Property Name="AdminId" Type="Int32" />
+          <Property Name="ApplicationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EdsaMeterApplication" Relationship="EdsaModel.FK_EdsaRecommendations_EdsaMeterApplications" FromRole="EdsaRecommendation" ToRole="EdsaMeterApplication" />
+          <NavigationProperty Name="EdsaUser" Relationship="EdsaModel.FK_EdsaRecommendations_EdsaUsers" FromRole="EdsaRecommendation" ToRole="EdsaUser" />
+        </EntityType>
+        <Association Name="FK_EdsaRecommendations_EdsaMeterApplications">
+          <End Type="EdsaModel.EdsaMeterApplication" Role="EdsaMeterApplication" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EdsaModel.EdsaRecommendation" Role="EdsaRecommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaMeterApplication">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaRecommendation">
+              <PropertyRef Name="MeterApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdsaRecommendations_EdsaUsers">
+          <End Type="EdsaModel.EdsaUser" Role="EdsaUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EdsaModel.EdsaRecommendation" Role="EdsaRecommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdsaUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdsaRecommendation">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EdsaModelStoreContainer" CdmEntityContainer="EdsaDBEntities">
+          <EntitySetMapping Name="EdsaIndividualUsers">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaIndividualUser">
+              <MappingFragment StoreEntitySet="EdsaIndividualUser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="IdentificationType" ColumnName="IdentificationType" />
+                <ScalarProperty Name="IDNo" ColumnName="IDNo" />
+                <ScalarProperty Name="TypeOfPremise" ColumnName="TypeOfPremise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaLogins">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaLogin">
+              <MappingFragment StoreEntitySet="EdsaLogin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaMeterApplications">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaMeterApplication">
+              <MappingFragment StoreEntitySet="EdsaMeterApplications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MeterTypeId" ColumnName="MeterTypeId" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AssignedForSurvey" ColumnName="AssignedForSurvey" />
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+                <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
+                <ScalarProperty Name="ContReport" ColumnName="ContReport" />
+                <ScalarProperty Name="ContFilePath" ColumnName="ContFilePath" />
+                <ScalarProperty Name="ContReportDate" ColumnName="ContReportDate" />
+                <ScalarProperty Name="AuditComment" ColumnName="AuditComment" />
+                <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+                <ScalarProperty Name="AuditedBy" ColumnName="AuditedBy" />
+                <ScalarProperty Name="EdsaMeterTypesId" ColumnName="EdsaMeterTypesId" />
+                <ScalarProperty Name="EdsaUsersId" ColumnName="EdsaUsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaMeterInventories">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaMeterInventory">
+              <MappingFragment StoreEntitySet="EdsaMeterInventories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaRoles">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaRole">
+              <MappingFragment StoreEntitySet="EdsaRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaUserRoles">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaUserRole">
+              <MappingFragment StoreEntitySet="EdsaUserRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaUsers">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaUser">
+              <MappingFragment StoreEntitySet="EdsaUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeterTypes">
+            <EntityTypeMapping TypeName="EdsaModel.MeterType">
+              <MappingFragment StoreEntitySet="MeterTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaVendorRegistrations">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaVendorRegistration">
+              <MappingFragment StoreEntitySet="EdsaVendorRegistration">
+                <ScalarProperty Name="InvetoryThreshold" ColumnName="InvetoryThreshold" />
+                <ScalarProperty Name="VendingLicenseAreaCoverage" ColumnName="VendingLicenseAreaCoverage" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="BusinessRegNo" ColumnName="BusinessRegNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="BusinessAddress" ColumnName="BusinessAddress" />
+                <ScalarProperty Name="RegisteredName" ColumnName="RegisteredName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaLightingAndPowers">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaLightingAndPower">
+              <MappingFragment StoreEntitySet="EdsaLightingAndPower">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PowerSocketPointsRating" ColumnName="PowerSocketPointsRating" />
+                <ScalarProperty Name="PowerSocketPointsQty" ColumnName="PowerSocketPointsQty" />
+                <ScalarProperty Name="PowerSocketPoints" ColumnName="PowerSocketPoints" />
+                <ScalarProperty Name="LightPointsRating" ColumnName="LightPointsRating" />
+                <ScalarProperty Name="LightPointsQty" ColumnName="LightPointsQty" />
+                <ScalarProperty Name="LightPoints" ColumnName="LightPoints" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaEquipments">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaEquipment">
+              <MappingFragment StoreEntitySet="EdsaEquipments">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ComputerRating" ColumnName="ComputerRating" />
+                <ScalarProperty Name="ComputerQty" ColumnName="ComputerQty" />
+                <ScalarProperty Name="Computers" ColumnName="Computers" />
+                <ScalarProperty Name="ElectricBulbsRating" ColumnName="ElectricBulbsRating" />
+                <ScalarProperty Name="ElectricBulbsQty" ColumnName="ElectricBulbsQty" />
+                <ScalarProperty Name="ElectricBulbs" ColumnName="ElectricBulbs" />
+                <ScalarProperty Name="ElectricFansRating" ColumnName="ElectricFansRating" />
+                <ScalarProperty Name="ElectricFansQty" ColumnName="ElectricFansQty" />
+                <ScalarProperty Name="ElectricFans" ColumnName="ElectricFans" />
+                <ScalarProperty Name="FridgeRating" ColumnName="FridgeRating" />
+                <ScalarProperty Name="FridgeQty" ColumnName="FridgeQty" />
+                <ScalarProperty Name="Fridge" ColumnName="Fridge" />
+                <ScalarProperty Name="ElectricOvenRating" ColumnName="ElectricOvenRating" />
+                <ScalarProperty Name="ElectricOvenQty" ColumnName="ElectricOvenQty" />
+                <ScalarProperty Name="ElectricOven" ColumnName="ElectricOven" />
+                <ScalarProperty Name="ElectricDryerRating" ColumnName="ElectricDryerRating" />
+                <ScalarProperty Name="ElectricDryerQty" ColumnName="ElectricDryerQty" />
+                <ScalarProperty Name="ElectricDryer" ColumnName="ElectricDryer" />
+                <ScalarProperty Name="WasingMachineRating" ColumnName="WasingMachineRating" />
+                <ScalarProperty Name="WasingMachineQty" ColumnName="WasingMachineQty" />
+                <ScalarProperty Name="WasingMachine" ColumnName="WasingMachine" />
+                <ScalarProperty Name="ElectricIronRating" ColumnName="ElectricIronRating" />
+                <ScalarProperty Name="ElectricIronQty" ColumnName="ElectricIronQty" />
+                <ScalarProperty Name="ElectricIron" ColumnName="ElectricIron" />
+                <ScalarProperty Name="AirConditionersRating" ColumnName="AirConditionersRating" />
+                <ScalarProperty Name="AirConditionersQty" ColumnName="AirConditionersQty" />
+                <ScalarProperty Name="AirConditioners" ColumnName="AirConditioners" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdsaRecommendations">
+            <EntityTypeMapping TypeName="EdsaModel.EdsaRecommendation">
+              <MappingFragment StoreEntitySet="EdsaRecommendations">
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="MeterApplicationId" ColumnName="MeterApplicationId" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="MeterType" ColumnName="MeterType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

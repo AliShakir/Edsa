@@ -1,0 +1,116 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <h4>My Profile</h4>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <input type="hidden" value="@item.edsaIndividualUser.id" id="Id" />
+                    <input type="hidden" value="@item.edsaLogin.id" id="LoginId" />
+                    <label class="c-field__label" for="Name">First Name </label>
+                    <input class="c-input" type="text" id="FirstName" placeholder="First Name" value="@item.edsaIndividualUser.FirstName" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="MiddleName">Middle Name</label>
+                    <input class="c-input" type="text" id="MiddleName" placeholder="Middle Name" value="@item.edsaIndividualUser.MiddleName" />
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <input type="hidden" />
+                    <label class="c-field__label" for="LastName">Last Name</label>
+                    <input class="c-input" type="text" id="LastName" placeholder="Last Name" value="@item.edsaIndividualUser.LastName" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="TelNo">Telephone No</label>
+                    <input class="c-input" type="text" id="TelNo" placeholder="Telephone No" value="@item.edsaIndividualUser.TelNo" />
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <input type="hidden" />
+                    <label class="c-field__label" for="IDNo">ID No</label>
+                    <input class="c-input" type="text" id="IDNo" placeholder="ID No" value="@item.edsaIndividualUser.IDNo" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="TypeOfPremise">Type of Premise</label>
+                    @Html.DropDownList("IdentificationType", (IEnumerable<SelectListItem>)ViewBag.IdentificationType, @item.edsaIndividualUser.IdentificationType, new { @class = "c-select" })
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="TypeOfPremise">Type of Premise</label>
+                    @Html.DropDownList("TypeOfPremise", (IEnumerable<SelectListItem>)ViewBag.TypeofPremise, @item.edsaIndividualUser.TypeOfPremise, new { @class = "c-select" })                    
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Username">Username</label>
+                    <input class="c-input" type="text" id="Username" placeholder="Username" value="@item.edsaLogin.username" />
+                </div> cla
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <input type="hidden" />
+                    <label class="c-field__label" for="Password">Password</label>
+                    <input class="c-input" type="password" id="Password" placeholder="Password" value="@item.edsaLogin.password" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Address">Address</label>
+                    <textarea class="c-input" id="Address" placeholder="Address">@item.edsaIndividualUser.Address</textarea>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-lg-5">
+
+        </div>
+        <div class="col-lg-5">
+            <button class="c-btn c-btn--secondary pull-right" id="btnSave">
+                <i class="fa fa-floppy-o"></i> &nbsp;Save
+            </button>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    $('#btnSave').click(function () {
+        if ($('#FirstName').val() == '' ||
+            $('#MiddleName').val() == '' ||
+            $('#LastName').val() == '' ||
+            $('#TelNo').val() == '' ||
+            $('#IDNo').val() == '' ||
+            $('#IdentificationType option:selected').val() == '' ||
+            $('#TypeOfPremise option:selected').val() == '' ||
+            $('#Username').val() == '' ||
+            $('#Password').val() == '') {
+            toastr.error("All fields are required.", "Error");
+        }
+        else {            
+            // Populate Json Object.
+            var UserObj = {
+                id: $('#Id').val(),
+                FirstName: $('#FirstName').val(),
+                MiddleName: $('#MiddleName').val(),
+                LastName: $('#LastName').val(),
+                Address: $('#Address').val(),
+                TelNo: $('#TelNo').val(),
+                IdentificationType: $('#IdentificationType option:selected').text(),
+                IDNo: $('#IDNo').val(),
+                TypeOfPremise: $('#TypeOfPremise option:selected').text(),
+                username: $('#Username').val(),
+                password: $('#Password').val(),
+                UserId: $('#Id').val(),
+                LoginId: $('#LoginId').val(),
+            }
+            EdsaApp.GetUpdateIndCustomer(UserObj);
+        }
+    })
+</script>
+
+

@@ -1,0 +1,323 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "ReviewApplication";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
+
+        </div>
+        <div class="col-lg-5">
+            <div class="c-field u-mb-small">
+                <select class="c-select" id="approval">
+                    <option value="1">--Select--</option>
+                    <option value="2">Approve</option>
+                    <option value="3">Reject</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="c-tabs">
+        <nav class="c-tabs__list nav nav-tabs" id="myTab" role="tablist">
+            <a class="c-tabs__link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Applicant Information</a>
+            <a class="c-tabs__link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Meter Details</a>
+            <a class="c-tabs__link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Others</a>
+            <a class="c-tabs__link" id="nav-survey-tab" data-toggle="tab" href="#nav-survey" role="tab" aria-controls="nav-survey" aria-selected="false">Survey Report</a>
+            <a class="c-tabs__link" id="nav-recommendation-tab" data-toggle="tab" href="#nav-recommendation" role="tab" aria-controls="nav-survey" aria-selected="false">Recommendations</a>
+        </nav>
+        <div class="c-tabs__content tab-content" id="nav-tabContent">
+            <div class="c-tabs__pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <input type="hidden" value="@item.edsaMeterApplication.Id" id="ApplicationId"/>
+                        <div class="col-lg-5">
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="FirstName">First Name:</label>
+                                <input class="c-input" type="text" id="FirstName" placeholder="First Name" value="@item.edsaIndividualUser.FirstName" readonly />
+                            </div>
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="MiddleName">Middle Name:</label>
+                                <input class="c-input" type="text" id="MiddleName" placeholder="Middle Name" value="@item.edsaIndividualUser.MiddleName" readonly />
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="LastName">Last Name: </label>
+                                <input class="c-input" type="text" id="LastName" placeholder="Last Name" value="@item.edsaIndividualUser.LastName" readonly />
+                            </div>
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="TelephoneNo">Telephone No:</label>
+                                <input class="c-input" type="text" id="TelephoneNo" placeholder="Telephone No" value="@item.edsaIndividualUser.TelNo" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="IdentificationType">Identification Type</label>
+                                <input class="c-input" type="text" id="IdentificationType" placeholder="Identification Type" value="@item.edsaIndividualUser.IdentificationType" readonly />
+                            </div>
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="IDNo">ID No:</label>
+                                <input class="c-input" type="text" id="IDNo" placeholder="IDNo" value="@item.edsaIndividualUser.IDNo" readonly />
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="TypeofPremise">Type of Premise: </label>
+                                <input class="c-input" type="text" id="TypeofPremise" placeholder="Type of Premise" value="@item.edsaIndividualUser.TypeOfPremise" readonly />
+                            </div>
+                            <div class="c-field u-mb-small">
+                                <label class="c-field__label" for="Address">Address </label>
+                                <textarea class="c-input" id="Address" placeholder="Address" readonly>@item.edsaIndividualUser.Address</textarea>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="c-tabs__pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="MeterType">Meter Type:</label>
+                                    <input class="c-input" type="text" id="MeterType" placeholder="Meter Type" value="@item.edsaMeterApplication.MeterType" readonly />
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="ReferenceNo">Reference No:</label>
+                                    <input class="c-input" type="text" id="ReferenceNo" placeholder="Reference No" value="@item.edsaMeterApplication.ReferenceNo" readonly />
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="RequestedDate">Requested Date: </label>
+                                    <input class="c-input" type="text" id="RequestedDate" placeholder="Requested Date" value="@item.edsaMeterApplication.RequestedDate" readonly />
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="Status">Status:</label>
+                                    <input class="c-input" type="text" id="Status" placeholder="Status" value="@item.edsaMeterApplication.Status" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="AssignedForSurvey">Assigned For Survey:</label>
+                                    <input class="c-input" type="text" id="AssignedForSurvey" placeholder="Assigned For Survey" value="@item.edsaMeterApplication.AssignedForSurvey" readonly />
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="AssignedTo">Assigned To:</label>
+                                    <input class="c-input" type="text" id="AssignedTo" placeholder="Assigned To" value="@item.edsaMeterApplication.AssignedTo" readonly />
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="AssignedDate">Assigned Date: </label>
+                                    <input class="c-input" type="text" id="AssignedDate" placeholder="Assigned Date" value="@item.edsaMeterApplication.AssignedDate" readonly />
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="CountReport">Count Report:</label>
+                                    <input class="c-input" type="text" id="CountReport" placeholder="Count Report" value="@item.edsaMeterApplication.ContReport" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="CountFilePath">Count File Path:</label>
+                                    <input class="c-input" type="text" id="CountFilePath" placeholder="Count File Path" value="@item.edsaMeterApplication.ContFilePath" readonly />
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="CountReportDate">Count Report Date:</label>
+                                    <input class="c-input" type="text" id="CountReportDate" placeholder="Count Report Date" value="@item.edsaMeterApplication.ContReportDate" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="c-tabs__pane" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="AuditComment">Audit Comment:</label>
+                                    <input class="c-input" type="text" id="AuditComment" placeholder="Audit Comment" value="@item.edsaMeterApplication.AuditComment" readonly/>
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="AuditDate">Audit Date:</label>
+                                    <input class="c-input" type="text" id="AuditDate" placeholder="Audit Date" value="@item.edsaMeterApplication.AuditDate" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="AuditedBy">Audited By:</label>
+                                    <input class="c-input" type="text" id="AuditedBy" placeholder="Audited By" value="@item.edsaMeterApplication.AuditedBy" readonly/>
+                                </div>
+                                <div class="c-field u-mb-small">
+                                    <label class="c-field__label" for="EdsaMeterTypeId">Edsa Meter Type Id:</label>
+                                    <input class="c-input" type="text" id="EdsaMeterTypeId" placeholder="Edsa Meter Type Id" value="@item.edsaMeterApplication.MeterTypeId" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            <div class="c-tabs__pane" id="nav-survey" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="tbl_PC" class="c-table">
+                            <caption class="c-table__title">
+                                Lighting and Power
+                            </caption>
+                            <thead class="c-table__head c-table__head--slim">
+                                <tr class="c-table__row">
+                                    <th class="c-table__cell c-table__cell--head">Lighting and Power Points</th>
+                                    <th class="c-table__cell c-table__cell--head">Qty</th>
+                                    <th class="c-table__cell c-table__cell--head">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="c-table__row">
+                                        <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaLightingAndPower.LightPoints" readonly /></td>
+                                        <td class="c-table__cell"><input class="c-input" type="text" readonly value="@item.edsaLightingAndPower.LightPointsQty" /></td>
+                                        <td class="c-table__cell"><input class="c-input" type="text" readonly value="@item.edsaLightingAndPower.LightPointsRating" /></td>
+                                    </tr>
+                                    <tr class="c-table__row">
+                                        <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaLightingAndPower.PowerSocketPoints" readonly /></td>
+                                        <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaLightingAndPower.PowerSocketPointsQty" readonly /></td>
+                                        <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaLightingAndPower.PowerSocketPointsRating" readonly /></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <table id="tbl_PC" class="c-table" style="margin-top:10px">
+                            <caption class="c-table__title">
+                                Equipments
+                            </caption>
+                            <thead class="c-table__head c-table__head--slim">
+                                <tr class="c-table__row">
+                                    <th class="c-table__cell c-table__cell--head">Equipment to be Installed</th>
+                                    <th class="c-table__cell c-table__cell--head">Qty</th>
+                                    <th class="c-table__cell c-table__cell--head">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.AirConditioners" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.AirConditionersQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.AirConditionersRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricIron" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricIronQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricIronRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.WasingMachine" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text"  value="@item.edsaEquipment.WasingMachineQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.WasingMachineRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricDryer" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricDryerQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text"  value="@item.edsaEquipment.ElectricDryerRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricOven" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricOvenQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricOvenRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.Fridge" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.FridgeQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.FridgeRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricFans" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricFansQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricFansRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricBulbs" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricBulbsQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ElectricBulbsRating" readonly /></td>
+                                </tr>
+                                <tr class="c-table__row">
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.Computers" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ComputerQty" readonly /></td>
+                                    <td class="c-table__cell"><input class="c-input" type="text" value="@item.edsaEquipment.ComputerRating" readonly /></td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="c-tabs__pane" id="nav-recommendation" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="c-field u-mb-small">
+                            <label class="c-field__label" for="TelNo">Meter Type</label>
+                            <select class="c-select" id="meterType">
+                                <option value="1">--Select--</option>
+                                <option value="2">Single Phase</option>
+                                <option value="3">3 Phase</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-7"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label class="c-field__label" for="TelNo">Comment</label>
+                        <textarea class="c-input" id="comment" placeholder="Enter your comment"></textarea>
+                    </div>
+                    <div class="col-lg-7"></div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-lg-5">
+                        <button class="c-btn c-btn--secondary pull-right" id="btnSave">
+                            <i class="fa fa-floppy-o"></i> &nbsp;Save
+                        </button>
+                    </div>
+                    <div class="col-lg-7">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/admin/bundles/js")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSave').click(function () {if ($('#approval option:selected').text() == '--Select--') {
+            toastr.warning('Please select approval type', 'Error');
+        }
+        else {
+            var UserObj = {
+                // To Get Recommended Meter Type
+                MeterType: $('#meterType option:selected').text(),
+                // Admin comment
+                comment: $('#comment').val(),
+                // Get Meter Application Id
+                MeterApplicationId: $('#ApplicationId').val(),
+                // Admin Id
+                AdminId: '@Session["Id"]',
+                // Approvel Status.
+                ApplicationStatus: $('#approval option:selected').text(),
+            }
+            EdsaApp.GetUpdateMeterApplicationStatus(UserObj);
+        }                            
+        });
+    });
+</script>

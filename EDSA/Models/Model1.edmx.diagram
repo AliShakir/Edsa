@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b751f3dc012499aa5cbcaa99c8f5f9c" Name="Diagram1">
+        <EntityTypeShape EntityType="EdsaModel.EdsaIndividualUser" Width="1.5" PointX="8.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaLogin" Width="1.5" PointX="11" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaMeterApplication" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaMeterInventory" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaRole" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaUserRole" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaUser" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdsaModel.MeterType" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="EdsaModel.FK_tblLogin_PK_tblIndividualUser" ManuallyRouted="false" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaMeterApplications_EdsaUsers_EdsaUsersId" ManuallyRouted="false" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaMeterApplications_MeterTypes_EdsaMeterTypesId" ManuallyRouted="false" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaMeterInventories_MeterTypes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaUserRoles_EdsaUses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaVendorRegistration" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaLightingAndPower" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaEquipment" Width="1.5" PointX="5.375" PointY="8.75" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaEquipments_PK_IndividualUsers" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaLightingAndPower_PK_IndividualUsers" />
+        <EntityTypeShape EntityType="EdsaModel.EdsaRecommendation" Width="1.5" PointX="8.25" PointY="6.375" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaRecommendations_EdsaMeterApplications" />
+        <AssociationConnector Association="EdsaModel.FK_EdsaRecommendations_EdsaUsers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

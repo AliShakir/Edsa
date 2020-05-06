@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - My Kendo UI MVC Application</title>    
+    @Styles.Render("~/edsa/bundles/css")
+</head>
+<body class="k-content">
+    <nav class="navbar navbar-inverse navbar-fixed-top p-3">
+        <div class="container p-0 p-sm-3">
+            <div id="responsive-panel" class="navbar-left">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Register Meter", "RegisterMeter", "Home")</li>
+                    <li>@Html.ActionLink("Individual Customer", "IndividualCustomer", "Home")</li>
+                    <li>@Html.ActionLink("Corporate Customer", "CorporateCustomer", "Home")</li>
+                    <li>@Html.ActionLink("Register Vendor", "RegisterVendor", "Home")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Login")</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer text-center d-flex align-items-center">
+        <div class="container pb-0">
+            <hr />
+            <p>Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+            $("#menu").kendoMenu();
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+    @Scripts.Render("~/edsa/bundles/js")
+</body>
+
+</html>

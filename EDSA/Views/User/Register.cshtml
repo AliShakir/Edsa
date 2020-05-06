@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+    <div class="row justify-content-center" style="margin-top: 10px;">
+        <input type="hidden" id="Id" />
+        <div class="col-md-6">
+            <div class="card">
+                <header class="card-header">
+                    @*<a href="/Login/Login" class="float-right k-button k-primary mt-1 btnLogin"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Login</a>*@
+                    <h4 class="card-title mt-2">Register</h4>
+                </header>
+                <article class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>First Name <small class="text-danger">*</small></label>
+                                <input type="text" class="k-textbox col" id="FullName" placeholder="First Name" />
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>Middle Name <small class="text-danger">*</small></label>
+                                <input type="text" class="k-textbox col" id="FullName" placeholder="Middle Name" />
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Last Name <small class="text-danger">*</small></label>
+                                <input type="email" class="k-textbox col" id="Mobile" placeholder="Last Name" />
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>Telephone No <small class="text-danger">*</small></label>
+                                <input type="email" class="k-textbox col" id="Mobile" placeholder="Telephone No" />
+                            </div> <!-- form-group end.// -->
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Identification Type</label>
+                                <input type="email" class="k-textbox col" id="Email" placeholder="Identification Type" />
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>ID No.</label>
+                                <input type="email" class="k-textbox col" id="Email" placeholder="ID No" />
+                            </div> <!-- form-group end.// -->
+                        </div>
+                        <div class="form-group">
+                            <label>Type of Premise <small class="text-danger">*</small>  </label>
+                            <select id="size" class="form-control" placeholder="Select size..." style="width: 100%;">
+                                <option>--Select--</option>
+                                <option>Private</option>
+                                <option>Single</option>
+                                <option>Flate</option>
+                                <option>Other</option>
+                            </select>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Address <small class="text-danger">*</small></label>
+                                <textarea class="k-textbox col" style="height: 155px;" placeholder="Address"></textarea>
+                                @*<input type="email" class="k-textbox col" id="Email" placeholder="Address" />*@
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row.// -->
+                        <div class="form-group">
+                            <button type="button" class="k-button k-primary btn-block" id="btnRegister"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; Register</button>
+                        </div> <!-- form-group// -->
+                        <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our<br> Terms of use and Privacy Policy.</small>
+                    </form>
+                </article> <!-- card-body end .// -->
+                <div class="border-top card-body text-center">Have an account? <a href="#" class="btnLogin">Log In</a></div>
+            </div> <!-- card.// -->
+        </div>
+    </div>
+</div>
+

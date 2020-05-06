@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/LoginFormStyles.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Internal User Login</title>
+    @Styles.Render("~/edsa/bundles/css")
+</head>
+<body>
+    <div id="logreg-forms">
+        <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+            <select id="userType" class="form-control" style="font-size:14px !important; margin-bottom:10px">
+                <option value="0">--Select User Type--</option>
+                <option value="1">System Admin</option>
+                <option value="2">EDSA Admin</option>
+                <option value="3">EDSA Sales</option>
+                <option value="4">EDSA Internal Audit</option>
+                <option value="5">Vendor Admin</option>
+                <option value="6">Vendor Sales</option>
+                <option value="7">Certified Contractor</option>
+                <option value="8">Call Center</option>
+            </select>
+            
+            <input class="k-textbox" placeholder="Username" id="Username" style="width:100%;" value="@ViewBag.Username" />
+            <input type="password" class="k-textbox" placeholder="Password" id="Password" style="width:100%;margin-top:10px;" value="@ViewBag.Password">
+            @*@if (ViewBag.Username != null & ViewBag.Password != null)
+        {
+            <input type="checkbox" id="ckb1" class="k-checkbox" style="margin-top:10px;" checked>
+            <label class="k-checkbox-label" for="eq3" style="margin-top:10px;">Remember me</label>
+        }
+        else
+        {*@
+            <input type="checkbox" id="ckb1" class="k-checkbox" style="margin-top:10px;">
+            <label class="k-checkbox-label" for="eq3" style="margin-top:10px;">Remember me</label>
+            @*}*@
+            <button class="k-button k-primary btn-block" id="btnLogin" type="button" style="margin-top: 10px;"> Sign in</button>
+            <a href="#" id="forgot_pswd">Forgot password?</a>
+            <hr>
+            <!-- <p>Don't have an account!</p>  -->
+            <button class="k-button k-primary btn-block" type="button" id="btnSignup"> Sign up New Account</button>
+        </form>
+    </div>
+    @Scripts.Render("~/edsa/bundles/js")
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('#btnLogin').click(function () {
+            EdsaApp.InternalUserLogin();
+        });
+        $("#btnLogin").kendoButton({
+            icon: "login"
+        });
+        // Enter Key Press.
+        $('#Password').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                EdsaApp.InternalUserLogin();
+            }
+        });
+    });
+</script>

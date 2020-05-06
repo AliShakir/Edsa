@@ -1,0 +1,68 @@
+﻿@model IEnumerable<EDSA.Models.ViewModel>
+@{
+    ViewBag.Title = "EditInternalUser";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@Styles.Render("~/admin/bundles/css")
+<div class="container-fluid">
+    @foreach (var item in Model)
+    {<div class="row" style="margin-bottom:10px">
+         <div class="col-lg-5">
+             
+             @Html.DropDownList("UserRoles", (IEnumerable<SelectListItem>)ViewBag.UserRoles, new { @class = "c-select" })
+         </div>
+            <div class="col-lg-5"></div>
+        </div>
+        <hr />
+        <div class="row" style="margin-top:10px">
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="FullName">Full Name: * </label>
+                    <input class="c-input" type="text" id="FullName" placeholder="Full Name" value="@item.edsaUsers.FullName" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Email">Email: *</label>
+                    <input class="c-input" type="text" id="Email" placeholder="Email" value="@item.edsaUsers.Email" />
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Username">Username: *</label>
+                    <input class="c-input" type="text" id="Username" placeholder="Username" value="@item.edsaUsers.Username" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Password">Password: *</label>
+                    <input class="c-input" type="password" id="Password" placeholder="Password" value="@item.edsaUsers.Password" />
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="CPassword">Confirm Password: *</label>
+                    <input class="c-input" type="Password" id="CPassword" placeholder="Password" />
+                </div>
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Phone">Phone: * </label>
+                    <input class="c-input" type="text" id="Phone" placeholder="Phone" value="@item.edsaUsers.PhoneNumber" />
+                </div>
+
+            </div>
+            <div class="col-lg-5">
+                <div class="c-field u-mb-small">
+                    <label class="c-field__label" for="Photo">Photo: *</label>
+                    <input type="file" id="Photo" />
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row" style="margin-top:10px">
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-5">
+            <button class="c-btn c-btn--secondary pull-right" id="btnSave">
+                <i class="fa fa-floppy-o "></i>&nbsp;  Save
+            </button>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/admin/bundles/js")
+
